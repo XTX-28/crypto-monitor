@@ -1,4 +1,4 @@
-export function formatPrice(price: number | null, symbol?: string): string {
+export function formatPrice(price: number | null, _symbol?: string): string {
   if (price === null || price === undefined) return '--';
   
   // Determine decimal places based on price magnitude

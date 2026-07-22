@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
-import { createChart, type IChartApi, type ISeriesApi, ColorType } from 'lightweight-charts';
+import { createChart, LineSeries, type IChartApi, type ISeriesApi, ColorType } from 'lightweight-charts';
 import { usePriceStore } from '../../hooks/usePriceStore';
 import styles from './PriceChart.module.css';
 
@@ -45,13 +45,13 @@ export function PriceChart({ symbol }: PriceChartProps) {
       height: 350,
     });
 
-    const binanceSeries = chart.addLineSeries({
+    const binanceSeries = chart.addSeries(LineSeries, {
       color: '#f0b90b',
       lineWidth: 2,
       title: 'Binance',
     });
 
-    const okxSeries = chart.addLineSeries({
+    const okxSeries = chart.addSeries(LineSeries, {
       color: '#3b82f6',
       lineWidth: 2,
       title: 'OKX',
