@@ -1,9 +1,11 @@
-import { useMemo, useState, useRef, useCallback } from 'react';
+import { useMemo, useState, useRef, useCallback, useEffect } from 'react';
 import { usePriceStore } from '../../hooks/usePriceStore';
 import { useLocale } from '../../i18n/useLocale';
 import { formatPrice, formatPercent, formatFundingRate, formatVolume, formatSpread } from '../../utils/format';
 import { SparkLine } from '../SparkLine';
-import type { SortField, SortDirection } from '../../types';
+import { TableSkeleton } from '../Skeleton';
+import type { SortField, SortDirection, ColumnKey } from '../../types';
+import type { TranslationKey } from '../../i18n/zh';
 import styles from './MarketTable.module.css';
 
 interface MarketTableProps {
@@ -18,10 +20,64 @@ export function MarketTable({ onSelectSymbol, onRemoveSymbol, selectedSymbol }: 
   const prices = usePriceStore(s => s.prices);
   const priceHistory = usePriceStore(s => s.priceHistory);
   const reorderSymbols = usePriceStore(s => s.reorderSymbols);
+  const settings = usePriceStore(s => s.settings);
+  const updateSettings = usePriceStore(s => s.updateSettings);
 
   const [sortField, setSortField] = useState<SortField>('symbol');
   const [sortDir, setSortDir] = useState<SortDirection>('asc');
   const dragRowRef = useRef<number | null>(null);
+  const prevPricesRef = useRef<Record<string, { binance: number | null; okx: number | null }>>({});
+  const [flashState, setFlashState] = useState<Record<string, 'up' | 'down' | null>>({});
+  const [showColumnMenu, setShowColumnMenu] = useState(false);
+
+  // Detect if data is still loading
+  const isLoading = useMemo(() => {
+    return symbols.length === 0 || symbols.every(s => {
+      const p = prices[s];
+      return !p || (p.binance.price === null && p.okx.price === null);
+    });
+  }, [symbols, prices]);
+
+  // Track price changes for flash animation
+  useEffect(() => {
+    const newFlash: Record<string, 'up' | 'down' | null> = {};
+    for (const symbol of symbols) {
+      const p = prices[symbol];
+      const prev = prevPricesRef.current[symbol];
+      if (!p) continue;
+      const curB = p.binance.price;
+      const prevB = prev?.binance ?? null;
+      if (curB !== null && prevB !== null && curB !== prevB) {
+        newFlash[symbol] = curB > prevB ? 'up' : 'down';
+      }
+    }
+    if (Object.keys(newFlash).length > 0) {
+      setFlashState(newFlash);
+      setTimeout(() => setFlashState(prev => {
+        const cleared = { ...prev };
+        for (const k of Object.keys(newFlash)) cleared[k] = null;
+        return cleared;
+      }), 600);
+    }
+    // Update prev prices
+    const newPrev: Record<string, { binance: number | null; okx: number | null }> = {};
+    for (const symbol of symbols) {
+      const p = prices[symbol];
+      if (p) newPrev[symbol] = { binance: p.binance.price, okx: p.okx.price };
+    }
+    prevPricesRef.current = newPrev;
+  }, [prices, symbols]);
+
+  const visibleColumns = settings.visibleColumns;
+  const isColVisible = useCallback((col: ColumnKey) => visibleColumns.includes(col), [visibleColumns]);
+
+  const toggleColumn = useCallback((col: ColumnKey) => {
+    const current = settings.visibleColumns;
+    const next = current.includes(col)
+      ? current.filter(c => c !== col)
+      : [...current, col];
+    updateSettings({ visibleColumns: next });
+  }, [settings.visibleColumns, updateSettings]);
 
   const handleSort = useCallback((field: SortField) => {
     if (sortField === field) {
@@ -88,8 +144,38 @@ export function MarketTable({ onSelectSymbol, onRemoveSymbol, selectedSymbol }: 
     </span>
   );
 
+  if (isLoading) {
+    return <TableSkeleton rows={6} />;
+  }
+
   return (
     <div className={styles.tableWrapper}>
+      {/* Column settings button */}
+      <div className={styles.columnMenuWrapper}>
+        <button
+          className={styles.columnMenuBtn}
+          onClick={() => setShowColumnMenu(!showColumnMenu)}
+          title={t('columnSettings')}
+        >
+          ⚙
+        </button>
+        {showColumnMenu && (
+          <div className={styles.columnMenu}>
+            <div className={styles.columnMenuTitle}>{t('columnSettings')}</div>
+            {(['volume24h', 'fundingRate', 'openInterest', 'trend'] as ColumnKey[]).map(col => (
+              <label key={col} className={styles.columnMenuItem}>
+                <input
+                  type="checkbox"
+                  checked={isColVisible(col)}
+                  onChange={() => toggleColumn(col)}
+                />
+                {t(col as TranslationKey)}
+              </label>
+            ))}
+          </div>
+        )}
+      </div>
+
       <table className={styles.table}>
         <thead>
           <tr>
@@ -107,14 +193,22 @@ export function MarketTable({ onSelectSymbol, onRemoveSymbol, selectedSymbol }: 
             <th className={styles.changeCol} onClick={() => handleSort('change24h')}>
               {t('change24h')}<SortIcon field="change24h" />
             </th>
-            <th className={styles.volumeCol} onClick={() => handleSort('volume24h')}>
-              {t('volume24h')}<SortIcon field="volume24h" />
-            </th>
-            <th className={styles.frCol}>{t('fundingRate')}<br /><span className={styles.exchangeLabel}>B / O</span></th>
-            <th className={styles.oiCol} onClick={() => handleSort('openInterest')}>
-              {t('openInterest')}<SortIcon field="openInterest" />
-            </th>
-            <th className={styles.trendCol}>{t('trend')}</th>
+            {isColVisible('volume24h') && (
+              <th className={styles.volumeCol} onClick={() => handleSort('volume24h')}>
+                {t('volume24h')}<SortIcon field="volume24h" />
+              </th>
+            )}
+            {isColVisible('fundingRate') && (
+              <th className={styles.frCol}>{t('fundingRate')}<br /><span className={styles.exchangeLabel}>B / O</span></th>
+            )}
+            {isColVisible('openInterest') && (
+              <th className={styles.oiCol} onClick={() => handleSort('openInterest')}>
+                {t('openInterest')}<SortIcon field="openInterest" />
+              </th>
+            )}
+            {isColVisible('trend') && (
+              <th className={styles.trendCol}>{t('trend')}</th>
+            )}
             <th className={styles.actionCol}></th>
           </tr>
         </thead>
@@ -125,11 +219,12 @@ export function MarketTable({ onSelectSymbol, onRemoveSymbol, selectedSymbol }: 
             const spread = formatSpread(p.binance.price, p.okx.price);
             const change = p.binance.priceChange24h ?? p.okx.priceChange24h;
             const isSelected = selectedSymbol === symbol;
+            const flash = flashState[symbol];
 
             return (
               <tr
                 key={symbol}
-                className={`${styles.row} ${isSelected ? styles.selectedRow : ''}`}
+                className={`${styles.row} ${isSelected ? styles.selectedRow : ''} ${flash === 'up' ? styles.flashUp : ''} ${flash === 'down' ? styles.flashDown : ''}`}
                 onClick={() => onSelectSymbol(symbol)}
                 draggable
                 onDragStart={() => handleDragStart(idx)}
@@ -161,21 +256,29 @@ export function MarketTable({ onSelectSymbol, onRemoveSymbol, selectedSymbol }: 
                     </span>
                   ) : '--'}
                 </td>
-                <td className={styles.volumeCol}>
-                  <span className={styles.volumeValue}>{formatVolume(p.binance.volume24h ?? p.okx.volume24h)}</span>
-                </td>
-                <td className={styles.frCol}>
-                  <span className={styles.frPair}>
-                    <span className={styles.frBinance}>{formatFundingRate(p.binance.fundingRate)}</span>
-                    <span className={styles.frOkx}>{formatFundingRate(p.okx.fundingRate)}</span>
-                  </span>
-                </td>
-                <td className={styles.oiCol}>
-                  <span className={styles.oiValue}>{formatVolume(p.binance.openInterest ?? p.okx.openInterest)}</span>
-                </td>
-                <td className={styles.trendCol}>
-                  <SparkLine data={priceHistory[symbol] || []} exchange="binance" />
-                </td>
+                {isColVisible('volume24h') && (
+                  <td className={styles.volumeCol}>
+                    <span className={styles.volumeValue}>{formatVolume(p.binance.volume24h ?? p.okx.volume24h)}</span>
+                  </td>
+                )}
+                {isColVisible('fundingRate') && (
+                  <td className={styles.frCol}>
+                    <span className={styles.frPair}>
+                      <span className={styles.frBinance}>{formatFundingRate(p.binance.fundingRate)}</span>
+                      <span className={styles.frOkx}>{formatFundingRate(p.okx.fundingRate)}</span>
+                    </span>
+                  </td>
+                )}
+                {isColVisible('openInterest') && (
+                  <td className={styles.oiCol}>
+                    <span className={styles.oiValue}>{formatVolume(p.binance.openInterest ?? p.okx.openInterest)}</span>
+                  </td>
+                )}
+                {isColVisible('trend') && (
+                  <td className={styles.trendCol}>
+                    <SparkLine data={priceHistory[symbol] || []} exchange="binance" />
+                  </td>
+                )}
                 <td className={styles.actionCol}>
                   <button
                     className={styles.removeBtn}

@@ -15,6 +15,7 @@ import { StatusBar } from './components/StatusBar';
 import { Toast } from './components/Toast';
 import { Settings } from './components/Settings';
 import { PriceCard } from './components/PriceCard';
+import { MobileTabs } from './components/MobileTabs';
 import styles from './App.module.css';
 
 function App() {
@@ -22,6 +23,7 @@ function App() {
   const [showAlerts, setShowAlerts] = useState(false);
   const [showFunding, setShowFunding] = useState(false);
   const [showShortcuts, setShowShortcuts] = useState(false);
+  const [mobileTab, setMobileTab] = useState<'market' | 'funding' | 'alerts' | 'settings'>('market');
   const searchInputRef = useRef<HTMLInputElement>(null);
 
   const { t } = useLocale();
@@ -38,6 +40,11 @@ function App() {
   useOKXWS();
   useAlerts();
   useMarketData();
+
+  // Apply theme to document
+  useEffect(() => {
+    document.documentElement.dataset.theme = settings.theme;
+  }, [settings.theme]);
 
   // Handlers for keyboard shortcuts
   const handleToggleView = useCallback(() => {
@@ -205,7 +212,7 @@ function App() {
           {/* Right: Detail Panel */}
           {selectedSymbol && (
             <div className={styles.rightPanel}>
-              <DetailView symbol={selectedSymbol} />
+              <DetailView key={selectedSymbol} symbol={selectedSymbol} />
             </div>
           )}
         </div>
@@ -244,6 +251,15 @@ function App() {
 
       {/* Status Bar */}
       {!isFullscreenMode && <StatusBar />}
+
+      {/* Mobile Tab Navigation */}
+      {!isFullscreenMode && (
+        <MobileTabs
+          activeTab={mobileTab}
+          onTabChange={setMobileTab}
+          onOpenSettings={() => setSettingsOpen(true)}
+        />
+      )}
 
       {/* Overlays */}
       <Toast />

@@ -64,8 +64,7 @@ export function generateId(): string {
   return `${Date.now()}-${Math.random().toString(36).substring(2, 9)}`;
 }
 
-export function calcAnnualizedRate(rateDiff: number): string {
+export function calcAnnualizedRate(rateDiff: number): number {
   // 3 settlements per day, 365 days
-  const annualized = rateDiff * 3 * 365 * 100;
-  return annualized.toFixed(2) + '%';
+  return rateDiff * 3 * 365 * 100;
 }

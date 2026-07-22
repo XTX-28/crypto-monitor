@@ -21,6 +21,8 @@ export const POPULAR_SYMBOLS = [
   'TRXUSDT', 'FILUSDT', 'AAVEUSDT', 'UNIUSDT', 'MKRUSDT',
 ];
 
+export const ALL_COLUMNS: import('../types').ColumnKey[] = ['volume24h', 'fundingRate', 'openInterest', 'trend'];
+
 export const DEFAULT_SETTINGS: AppSettings = {
   volatilityThreshold: 1.0,
   soundEnabled: true,
@@ -28,6 +30,8 @@ export const DEFAULT_SETTINGS: AppSettings = {
   language: 'zh',
   viewMode: 'table',
   fullscreen: false,
+  theme: 'dark',
+  visibleColumns: [...ALL_COLUMNS],
 };
 
 export function symbolToOkxInstId(symbol: string): string {

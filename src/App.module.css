@@ -2,8 +2,8 @@
   display: flex;
   flex-direction: column;
   min-height: 100vh;
-  background: #0b0e11;
-  color: #e1e4e8;
+  background: var(--bg-primary);
+  color: var(--text-primary);
 }
 
 .fullscreenApp {
@@ -16,8 +16,8 @@
   align-items: center;
   padding: 0 16px;
   height: 48px;
-  background: #1e2329;
-  border-bottom: 1px solid #2b3139;
+  background: var(--panel-bg);
+  border-bottom: 1px solid var(--border-color);
   position: sticky;
   top: 0;
   z-index: 100;
@@ -40,7 +40,7 @@
 
 .subtitle {
   font-size: 12px;
-  color: #6e7681;
+  color: var(--text-muted);
 }
 
 .headerCenter {
@@ -53,8 +53,8 @@
 .searchBox {
   display: flex;
   align-items: center;
-  background: #0b0e11;
-  border: 1px solid #2b3139;
+  background: var(--input-bg);
+  border: 1px solid var(--input-border);
   border-radius: 6px;
   padding: 0 12px;
   max-width: 400px;
@@ -67,7 +67,7 @@
 }
 
 .searchIcon {
-  color: #6e7681;
+  color: var(--text-muted);
   font-size: 14px;
   margin-right: 8px;
 }
@@ -75,7 +75,7 @@
 .searchInput {
   background: none;
   border: none;
-  color: #e1e4e8;
+  color: var(--text-primary);
   font-size: 13px;
   padding: 7px 0;
   width: 100%;
@@ -83,7 +83,7 @@
 }
 
 .searchInput::placeholder {
-  color: #4a5060;
+  color: var(--text-muted);
 }
 
 .headerRight {
@@ -97,7 +97,7 @@
   border: 1px solid transparent;
   border-radius: 4px;
   padding: 6px 10px;
-  color: #8b949e;
+  color: var(--text-secondary);
   font-size: 12px;
   cursor: pointer;
   transition: all 0.15s;
@@ -105,8 +105,8 @@
 }
 
 .headerBtn:hover {
-  background: #2b3139;
-  color: #e1e4e8;
+  background: var(--btn-bg);
+  color: var(--text-primary);
 }
 
 .activeBtn {
@@ -135,8 +135,8 @@
   justify-content: space-between;
   align-items: center;
   padding: 8px 16px;
-  background: #161b26;
-  border-bottom: 1px solid #2b3139;
+  background: var(--header-bg);
+  border-bottom: 1px solid var(--border-color);
 }
 
 .toolbarLeft {
@@ -146,10 +146,10 @@
 
 .viewBtn {
   background: transparent;
-  border: 1px solid #2b3139;
+  border: 1px solid var(--border-color);
   border-radius: 4px;
   padding: 4px 12px;
-  color: #6e7681;
+  color: var(--text-muted);
   font-size: 12px;
   cursor: pointer;
   transition: all 0.15s;
@@ -157,7 +157,7 @@
 
 .viewBtn:hover {
   border-color: #f0b90b;
-  color: #e1e4e8;
+  color: var(--text-primary);
 }
 
 .activeViewBtn {
@@ -175,14 +175,14 @@
 
 .symbolCount {
   font-size: 12px;
-  color: #6e7681;
+  color: var(--text-muted);
 }
 
 /* Quick Add */
 .quickAddSection {
   padding: 8px 16px;
-  background: #0b0e11;
-  border-bottom: 1px solid #1a1e24;
+  background: var(--bg-primary);
+  border-bottom: 1px solid var(--row-border);
 }
 
 /* Content Layout */
@@ -206,9 +206,9 @@
 .rightPanel {
   width: 420px;
   flex-shrink: 0;
-  border-left: 1px solid #2b3139;
+  border-left: 1px solid var(--border-color);
   overflow-y: auto;
-  background: #1e2329;
+  background: var(--panel-bg);
 }
 
 /* Cards Grid (card view mode) */
@@ -239,8 +239,8 @@
 }
 
 .shortcutsPanel {
-  background: #1e2329;
-  border: 1px solid #2b3139;
+  background: var(--panel-bg);
+  border: 1px solid var(--border-color);
   border-radius: 8px;
   padding: 24px;
   min-width: 320px;
@@ -250,7 +250,7 @@
 .shortcutsTitle {
   font-size: 16px;
   font-weight: 700;
-  color: #e1e4e8;
+  color: var(--text-primary);
   margin: 0 0 16px 0;
 }
 
@@ -260,17 +260,17 @@
   gap: 12px;
   padding: 6px 0;
   font-size: 13px;
-  color: #8b949e;
+  color: var(--text-secondary);
 }
 
 .shortcutRow kbd {
-  background: #0b0e11;
-  border: 1px solid #2b3139;
+  background: var(--input-bg);
+  border: 1px solid var(--border-color);
   border-radius: 4px;
   padding: 2px 8px;
   font-size: 12px;
   font-family: 'JetBrains Mono', monospace;
-  color: #e1e4e8;
+  color: var(--text-primary);
   min-width: 28px;
   text-align: center;
 }
@@ -281,13 +281,13 @@
   right: 12px;
   background: none;
   border: none;
-  color: #6e7681;
+  color: var(--text-muted);
   font-size: 20px;
   cursor: pointer;
 }
 
 .shortcutsClose:hover {
-  color: #e1e4e8;
+  color: var(--text-primary);
 }
 
 /* Responsive */
@@ -308,23 +308,35 @@
   .subtitle {
     display: none;
   }
+  .headerRight {
+    gap: 2px;
+  }
+  .headerBtn {
+    padding: 4px 6px;
+    font-size: 11px;
+  }
   .rightPanel {
     position: fixed;
-    bottom: 32px;
+    bottom: 52px;
     left: 0;
     right: 0;
     width: 100%;
     height: 50vh;
     z-index: 50;
     border-left: none;
-    border-top: 1px solid #2b3139;
+    border-top: 1px solid var(--border-color);
+    box-shadow: 0 -4px 12px rgba(0,0,0,0.3);
   }
   .contentLayout {
     flex-direction: column;
+    padding-bottom: 52px;
   }
   .cardsGrid {
     grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
     gap: 8px;
     padding: 8px;
+  }
+  .toolbar {
+    padding: 6px 8px;
   }
 }

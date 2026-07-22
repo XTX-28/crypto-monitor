@@ -1,8 +1,9 @@
 .tableWrapper {
   overflow-x: auto;
-  border: 1px solid #2b3139;
+  border: 1px solid var(--border-color, #2b3139);
   border-radius: 8px;
-  background: #1e2329;
+  background: var(--panel-bg, #1e2329);
+  position: relative;
 }
 
 .table {
@@ -18,28 +19,28 @@
 }
 
 .table th {
-  background: #161b26;
-  color: #8b949e;
+  background: var(--header-bg, #161b26);
+  color: var(--text-secondary, #8b949e);
   font-weight: 600;
   font-size: 11px;
   text-transform: uppercase;
   letter-spacing: 0.3px;
   padding: 10px 8px;
   text-align: right;
-  border-bottom: 1px solid #2b3139;
+  border-bottom: 1px solid var(--border-color, #2b3139);
   cursor: pointer;
   user-select: none;
   white-space: nowrap;
 }
 
 .table th:hover {
-  color: #e1e4e8;
+  color: var(--text-primary, #e1e4e8);
 }
 
 .table td {
   padding: 8px 8px;
   text-align: right;
-  border-bottom: 1px solid #1a1e24;
+  border-bottom: 1px solid var(--row-border, #1a1e24);
   white-space: nowrap;
 }
 
@@ -56,7 +57,7 @@
 }
 
 .dragHandle:hover {
-  color: #8b949e;
+  color: var(--text-secondary, #8b949e);
 }
 
 .symbolCol {
@@ -65,13 +66,13 @@
 
 .symbolName {
   font-weight: 700;
-  color: #e1e4e8;
+  color: var(--text-primary, #e1e4e8);
   font-size: 13px;
 }
 
 .symbolPair {
   font-size: 10px;
-  color: #6e7681;
+  color: var(--text-muted, #6e7681);
   margin-left: 1px;
 }
 
@@ -80,14 +81,14 @@
 }
 
 .priceValue {
-  color: #e1e4e8;
+  color: var(--text-primary, #e1e4e8);
   font-weight: 500;
 }
 
 .spreadCol {}
 
 .spreadValue {
-  color: #8b949e;
+  color: var(--text-secondary, #8b949e);
   font-family: 'JetBrains Mono', monospace;
   font-size: 12px;
 }
@@ -116,7 +117,7 @@
 }
 
 .volumeValue {
-  color: #8b949e;
+  color: var(--text-secondary, #8b949e);
 }
 
 .frCol {
@@ -140,7 +141,7 @@
 
 .exchangeLabel {
   font-size: 9px;
-  color: #4a5060;
+  color: var(--text-muted, #4a5060);
   font-weight: 400;
 }
 
@@ -149,7 +150,7 @@
 }
 
 .oiValue {
-  color: #8b949e;
+  color: var(--text-secondary, #8b949e);
 }
 
 .trendCol {
@@ -182,18 +183,106 @@
 }
 
 .row:hover {
-  background: #252a32;
+  background: var(--row-hover, #252a32);
 }
 
 .selectedRow {
-  background: #1a2332 !important;
+  background: var(--row-selected, #1a2332) !important;
   border-left: 2px solid #3b82f6;
+}
+
+/* Price flash animations */
+.flashUp {
+  animation: flashGreen 0.6s ease-out;
+}
+
+.flashDown {
+  animation: flashRed 0.6s ease-out;
+}
+
+@keyframes flashGreen {
+  0% { background-color: rgba(14, 203, 129, 0.3); }
+  100% { background-color: transparent; }
+}
+
+@keyframes flashRed {
+  0% { background-color: rgba(246, 70, 93, 0.3); }
+  100% { background-color: transparent; }
 }
 
 .sortIcon {
   margin-left: 4px;
   font-size: 9px;
   color: #4a5060;
+}
+
+/* Column menu */
+.columnMenuWrapper {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  z-index: 20;
+}
+
+.columnMenuBtn {
+  background: var(--panel-bg, #1e2329);
+  border: 1px solid var(--border-color, #2b3139);
+  color: var(--text-secondary, #8b949e);
+  width: 28px;
+  height: 28px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.15s;
+}
+
+.columnMenuBtn:hover {
+  color: var(--text-primary, #e1e4e8);
+  border-color: var(--text-secondary, #8b949e);
+}
+
+.columnMenu {
+  position: absolute;
+  top: 32px;
+  right: 0;
+  background: var(--panel-bg, #1e2329);
+  border: 1px solid var(--border-color, #2b3139);
+  border-radius: 8px;
+  padding: 8px;
+  min-width: 160px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+}
+
+.columnMenuTitle {
+  font-size: 11px;
+  color: var(--text-secondary, #8b949e);
+  text-transform: uppercase;
+  padding: 4px 8px 8px;
+  border-bottom: 1px solid var(--border-color, #2b3139);
+  margin-bottom: 4px;
+}
+
+.columnMenuItem {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 8px;
+  font-size: 12px;
+  color: var(--text-primary, #e1e4e8);
+  cursor: pointer;
+  border-radius: 4px;
+  transition: background 0.1s;
+}
+
+.columnMenuItem:hover {
+  background: var(--row-hover, #252a32);
+}
+
+.columnMenuItem input[type="checkbox"] {
+  accent-color: #f0b90b;
 }
 
 /* Responsive */

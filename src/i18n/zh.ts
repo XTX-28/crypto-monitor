@@ -18,6 +18,7 @@ const zh = {
   openInterest: '持仓量',
   trend: '走势',
   noData: '暂无数据',
+  market: '行情',
 
   // Connection
   connected: '已连接',
@@ -32,6 +33,10 @@ const zh = {
   viewMode: '视图模式',
   tableView: '表格视图',
   cardView: '卡片视图',
+  theme: '主题',
+  darkMode: '暗色',
+  lightMode: '亮色',
+  columnSettings: '列设置',
 
   // Alerts
   priceAlerts: '价格警报',
@@ -58,6 +63,7 @@ const zh = {
   direction: '方向',
   nextSettlement: '下次结算',
   arbitrageOpportunity: '套利机会',
+  bestArbitrage: '最佳套利',
 
   // Detail View
   priceChart: '价格走势',

@@ -1,6 +1,6 @@
 .container {
-  background: #1e2329;
-  border: 1px solid #2b3139;
+  background: var(--panel-bg);
+  border: 1px solid var(--border-color);
   border-radius: 8px;
   overflow: hidden;
 }
@@ -10,7 +10,7 @@
   justify-content: space-between;
   align-items: center;
   padding: 12px 16px;
-  border-bottom: 1px solid #2b3139;
+  border-bottom: 1px solid var(--border-color);
 }
 
 .headerLeft {
@@ -21,12 +21,12 @@
 .symbolName {
   font-size: 18px;
   font-weight: 700;
-  color: #e1e4e8;
+  color: var(--text-primary);
 }
 
 .symbolPair {
   font-size: 12px;
-  color: #6e7681;
+  color: var(--text-muted);
   margin-left: 2px;
 }
 
@@ -37,10 +37,10 @@
 
 .rangeBtn {
   background: transparent;
-  border: 1px solid #2b3139;
+  border: 1px solid var(--border-color);
   border-radius: 4px;
   padding: 4px 10px;
-  color: #8b949e;
+  color: var(--text-secondary);
   font-size: 12px;
   cursor: pointer;
   transition: all 0.15s;
@@ -48,7 +48,7 @@
 
 .rangeBtn:hover {
   border-color: #3b82f6;
-  color: #e1e4e8;
+  color: var(--text-primary);
 }
 
 .activeRange {
@@ -76,7 +76,7 @@
   align-items: center;
   gap: 6px;
   font-size: 12px;
-  color: #8b949e;
+  color: var(--text-secondary);
 }
 
 .dot {
@@ -92,18 +92,18 @@
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
   gap: 1px;
-  background: #2b3139;
-  border-top: 1px solid #2b3139;
+  background: var(--border-color);
+  border-top: 1px solid var(--border-color);
 }
 
 .dataCard {
-  background: #1e2329;
+  background: var(--panel-bg);
   padding: 12px 16px;
 }
 
 .dataLabel {
   font-size: 11px;
-  color: #6e7681;
+  color: var(--text-muted);
   text-transform: uppercase;
   margin-bottom: 4px;
 }
@@ -111,7 +111,7 @@
 .dataValue {
   font-size: 16px;
   font-weight: 700;
-  color: #e1e4e8;
+  color: var(--text-primary);
   font-family: 'JetBrains Mono', monospace;
 }
 
@@ -120,7 +120,7 @@
   gap: 12px;
   margin-top: 4px;
   font-size: 11px;
-  color: #6e7681;
+  color: var(--text-muted);
   font-family: 'JetBrains Mono', monospace;
 }
 
@@ -133,16 +133,16 @@
 }
 
 .fundingSection {
-  border-top: 1px solid #2b3139;
+  border-top: 1px solid var(--border-color);
   padding: 12px 16px;
 }
 
 .toggleBtn {
   background: none;
-  border: 1px solid #2b3139;
+  border: 1px solid var(--border-color);
   border-radius: 4px;
   padding: 6px 12px;
-  color: #8b949e;
+  color: var(--text-secondary);
   font-size: 12px;
   cursor: pointer;
   transition: all 0.15s;
@@ -150,7 +150,7 @@
 
 .toggleBtn:hover {
   border-color: #3b82f6;
-  color: #e1e4e8;
+  color: var(--text-primary);
 }
 
 .fundingList {
@@ -165,11 +165,11 @@
   padding: 4px 0;
   font-size: 12px;
   font-family: 'JetBrains Mono', monospace;
-  border-bottom: 1px solid #1a1e24;
+  border-bottom: 1px solid var(--row-border);
 }
 
 .fundingTime {
-  color: #6e7681;
+  color: var(--text-muted);
 }
 
 .fundingBinance {

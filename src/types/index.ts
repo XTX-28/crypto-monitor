@@ -46,6 +46,8 @@ export interface ToastMessage {
   timestamp: number;
 }
 
+export type ColumnKey = 'volume24h' | 'fundingRate' | 'openInterest' | 'trend';
+
 export interface AppSettings {
   volatilityThreshold: number;
   soundEnabled: boolean;
@@ -53,6 +55,8 @@ export interface AppSettings {
   language: 'zh' | 'en';
   viewMode: 'table' | 'card';
   fullscreen: boolean;
+  theme: 'dark' | 'light';
+  visibleColumns: ColumnKey[];
 }
 
 export type WsConnectionStatus = 'connecting' | 'connected' | 'disconnected';

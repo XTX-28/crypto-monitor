@@ -18,6 +18,7 @@ const en = {
   openInterest: 'Open Interest',
   trend: 'Trend',
   noData: 'No Data',
+  market: 'Market',
 
   // Connection
   connected: 'Connected',
@@ -32,6 +33,10 @@ const en = {
   viewMode: 'View Mode',
   tableView: 'Table View',
   cardView: 'Card View',
+  theme: 'Theme',
+  darkMode: 'Dark',
+  lightMode: 'Light',
+  columnSettings: 'Columns',
 
   // Alerts
   priceAlerts: 'Price Alerts',
@@ -58,6 +63,7 @@ const en = {
   direction: 'Direction',
   nextSettlement: 'Next Settlement',
   arbitrageOpportunity: 'Arbitrage Opportunity',
+  bestArbitrage: 'Best Arb',
 
   // Detail View
   priceChart: 'Price Chart',
