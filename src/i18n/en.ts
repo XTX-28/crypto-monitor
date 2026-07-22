@@ -84,6 +84,9 @@ const en = {
   expandDetail: 'Expand Detail',
   addAlertShort: 'Add Alert',
   showHelp: 'Show Help',
+
+  // Positions
+  positions: 'Positions',
 };
 
 export default en;

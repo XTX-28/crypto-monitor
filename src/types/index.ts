@@ -68,3 +68,22 @@ export interface ConnectionState {
 
 export type SortField = 'symbol' | 'price' | 'spread' | 'change24h' | 'volume24h' | 'fundingRate' | 'openInterest';
 export type SortDirection = 'asc' | 'desc';
+
+export interface SimPosition {
+  id: string;
+  symbol: string;
+  exchange: 'binance' | 'okx';
+  direction: 'long' | 'short';
+  entryPrice: number;
+  quantity: number;
+  leverage: number;
+  margin: number;
+  takeProfit: number | null;
+  stopLoss: number | null;
+  openTime: number;
+  status: 'open' | 'closed';
+  closePrice?: number;
+  closeTime?: number;
+  realizedPnl?: number;
+  closeReason?: 'manual' | 'tp' | 'sl';
+}

@@ -84,6 +84,9 @@ const zh = {
   expandDetail: '展开详情',
   addAlertShort: '添加警报',
   showHelp: '显示帮助',
+
+  // Positions
+  positions: '仓位',
 };
 
 export type TranslationKey = keyof typeof zh;

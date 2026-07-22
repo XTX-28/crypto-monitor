@@ -1,0 +1,207 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  background: var(--bg-primary);
+}
+
+.header {
+  padding: 16px;
+  border-bottom: 1px solid var(--border-color);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.title {
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin: 0;
+}
+
+.addBtn {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: #f0b90b;
+  border: none;
+  color: #0b0e11;
+  font-size: 20px;
+  font-weight: 700;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.form {
+  padding: 16px;
+  background: var(--panel-bg);
+  border-bottom: 1px solid var(--border-color);
+}
+
+.formGroup {
+  margin-bottom: 12px;
+}
+
+.label {
+  display: block;
+  font-size: 12px;
+  color: var(--text-secondary);
+  margin-bottom: 6px;
+}
+
+.select,
+.input {
+  width: 100%;
+  padding: 10px;
+  background: var(--input-bg);
+  border: 1px solid var(--input-border);
+  border-radius: 6px;
+  color: var(--text-primary);
+  font-size: 14px;
+}
+
+.radioGroup {
+  display: flex;
+  gap: 16px;
+}
+
+.radio {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 13px;
+  color: var(--text-primary);
+  cursor: pointer;
+}
+
+.submitBtn {
+  width: 100%;
+  padding: 10px;
+  background: #f0b90b;
+  border: none;
+  border-radius: 6px;
+  color: #0b0e11;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.section {
+  flex: 1;
+  overflow: auto;
+  padding: 12px;
+}
+
+.sectionTitle {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text-secondary);
+  margin: 0 0 12px 0;
+}
+
+.alertList {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.alertCard {
+  background: var(--panel-bg);
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  padding: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.alertInfo {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex: 1;
+}
+
+.alertSymbol {
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+.alertCondition {
+  font-size: 13px;
+  color: var(--text-primary);
+  font-family: 'JetBrains Mono', monospace;
+}
+
+.alertStatus {
+  font-size: 11px;
+  padding: 2px 6px;
+  border-radius: 4px;
+}
+
+.enabled {
+  color: #0ecb81;
+  background: rgba(14, 203, 129, 0.15);
+}
+
+.disabled {
+  color: var(--text-muted);
+  background: var(--btn-bg);
+}
+
+.alertActions {
+  display: flex;
+  gap: 8px;
+}
+
+.toggleBtn,
+.deleteBtn {
+  width: 32px;
+  height: 32px;
+  border-radius: 6px;
+  border: none;
+  background: var(--btn-bg);
+  cursor: pointer;
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.toastList {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.toastItem {
+  background: var(--panel-bg);
+  border: 1px solid var(--border-color);
+  border-radius: 6px;
+  padding: 10px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.toastTime {
+  font-size: 11px;
+  color: var(--text-muted);
+  font-family: 'JetBrains Mono', monospace;
+}
+
+.toastTitle {
+  font-size: 13px;
+  color: var(--text-primary);
+}
+
+.empty {
+  text-align: center;
+  padding: 32px;
+  color: var(--text-muted);
+  font-size: 13px;
+}

@@ -1,0 +1,176 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  background: var(--bg-primary);
+  overflow: auto;
+}
+
+.header {
+  padding: 16px;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.title {
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin: 0;
+}
+
+.section {
+  padding: 16px;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.sectionTitle {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text-muted);
+  margin: 0 0 12px 0;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.toggleGroup {
+  display: flex;
+  gap: 8px;
+}
+
+.toggleBtn {
+  flex: 1;
+  padding: 10px;
+  border-radius: 8px;
+  border: 1px solid var(--border-color);
+  background: var(--btn-bg);
+  color: var(--text-secondary);
+  font-size: 14px;
+  cursor: pointer;
+  transition: all 0.15s;
+}
+
+.activeToggle {
+  background: #f0b90b !important;
+  color: #0b0e11 !important;
+  border-color: #f0b90b !important;
+  font-weight: 600;
+}
+
+.expandBtn {
+  padding: 8px 16px;
+  background: var(--btn-bg);
+  border: 1px solid var(--border-color);
+  border-radius: 6px;
+  color: var(--text-secondary);
+  font-size: 12px;
+  cursor: pointer;
+}
+
+.columnList {
+  margin-top: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.columnItem {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 14px;
+  color: var(--text-primary);
+  cursor: pointer;
+}
+
+.columnItem input[type="checkbox"] {
+  width: 18px;
+  height: 18px;
+  accent-color: #f0b90b;
+}
+
+.settingRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 0;
+  font-size: 14px;
+  color: var(--text-primary);
+}
+
+.switchBtn {
+  width: 44px;
+  height: 24px;
+  border-radius: 12px;
+  border: none;
+  background: var(--btn-bg);
+  cursor: pointer;
+  position: relative;
+  transition: background 0.2s;
+  padding: 0;
+}
+
+.switchOn {
+  background: #f0b90b;
+}
+
+.switchDot {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: white;
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  transition: transform 0.2s;
+}
+
+.switchOn .switchDot {
+  transform: translateX(20px);
+}
+
+.sliderRow {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.slider {
+  flex: 1;
+  height: 4px;
+  accent-color: #f0b90b;
+}
+
+.sliderValue {
+  font-size: 13px;
+  color: #f0b90b;
+  font-weight: 600;
+  font-family: 'JetBrains Mono', monospace;
+  min-width: 40px;
+  text-align: right;
+}
+
+.aboutRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 14px;
+  color: var(--text-primary);
+  margin-bottom: 12px;
+}
+
+.version {
+  color: var(--text-muted);
+  font-family: 'JetBrains Mono', monospace;
+}
+
+.installBtn {
+  width: 100%;
+  padding: 12px;
+  background: #f0b90b;
+  border: none;
+  border-radius: 8px;
+  color: #0b0e11;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+}
