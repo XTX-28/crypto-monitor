@@ -1,0 +1,112 @@
+.container {
+  position: relative;
+  margin-bottom: 16px;
+}
+
+.form {
+  display: flex;
+  gap: 8px;
+}
+
+.input {
+  flex: 1;
+  background: #161b26;
+  border: 1px solid #2a3244;
+  border-radius: 8px;
+  padding: 10px 14px;
+  color: #e1e4e8;
+  font-size: 14px;
+  outline: none;
+  transition: border-color 0.2s;
+}
+
+.input:focus {
+  border-color: #3b82f6;
+}
+
+.input::placeholder {
+  color: #6e7681;
+}
+
+.addBtn {
+  background: #3b82f6;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  padding: 10px 20px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.addBtn:hover {
+  background: #2563eb;
+}
+
+.dropdown {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  margin-top: 4px;
+  background: #161b26;
+  border: 1px solid #2a3244;
+  border-radius: 8px;
+  max-height: 200px;
+  overflow-y: auto;
+  z-index: 100;
+}
+
+.dropdownItem {
+  display: block;
+  width: 100%;
+  text-align: left;
+  padding: 8px 14px;
+  background: none;
+  border: none;
+  color: #e1e4e8;
+  font-size: 13px;
+  cursor: pointer;
+  transition: background 0.15s;
+}
+
+.dropdownItem:hover {
+  background: #2a3244;
+}
+
+.noResult {
+  padding: 12px 14px;
+  color: #6e7681;
+  font-size: 13px;
+}
+
+.quickAdd {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: 10px;
+  flex-wrap: wrap;
+}
+
+.quickLabel {
+  font-size: 12px;
+  color: #6e7681;
+}
+
+.quickBtn {
+  background: #21262d;
+  border: 1px solid #2a3244;
+  border-radius: 6px;
+  padding: 4px 10px;
+  color: #8b949e;
+  font-size: 12px;
+  cursor: pointer;
+  transition: all 0.15s;
+}
+
+.quickBtn:hover {
+  background: #2a3244;
+  color: #e1e4e8;
+  border-color: #3b82f6;
+}

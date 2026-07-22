@@ -1,0 +1,142 @@
+import { useEffect, useRef, useState } from 'react';
+import { createChart, type IChartApi, type ISeriesApi, ColorType } from 'lightweight-charts';
+import { usePriceStore } from '../../hooks/usePriceStore';
+import styles from './PriceChart.module.css';
+
+interface PriceChartProps {
+  symbol: string;
+}
+
+type TimeRange = '1m' | '5m' | '15m' | '1h';
+
+export function PriceChart({ symbol }: PriceChartProps) {
+  const chartContainerRef = useRef<HTMLDivElement>(null);
+  const chartRef = useRef<IChartApi | null>(null);
+  const binanceSeriesRef = useRef<ISeriesApi<'Line'> | null>(null);
+  const okxSeriesRef = useRef<ISeriesApi<'Line'> | null>(null);
+  const [timeRange, setTimeRange] = useState<TimeRange>('5m');
+  
+  const priceHistory = usePriceStore(s => s.priceHistory[symbol]);
+
+  useEffect(() => {
+    if (!chartContainerRef.current) return;
+
+    const chart = createChart(chartContainerRef.current, {
+      layout: {
+        background: { type: ColorType.Solid, color: '#0d1117' },
+        textColor: '#8b949e',
+      },
+      grid: {
+        vertLines: { color: '#1c2333' },
+        horzLines: { color: '#1c2333' },
+      },
+      crosshair: {
+        mode: 0,
+      },
+      rightPriceScale: {
+        borderColor: '#2a3244',
+      },
+      timeScale: {
+        borderColor: '#2a3244',
+        timeVisible: true,
+        secondsVisible: false,
+      },
+      width: chartContainerRef.current.clientWidth,
+      height: 350,
+    });
+
+    const binanceSeries = chart.addLineSeries({
+      color: '#f0b90b',
+      lineWidth: 2,
+      title: 'Binance',
+    });
+
+    const okxSeries = chart.addLineSeries({
+      color: '#3b82f6',
+      lineWidth: 2,
+      title: 'OKX',
+    });
+
+    chartRef.current = chart;
+    binanceSeriesRef.current = binanceSeries;
+    okxSeriesRef.current = okxSeries;
+
+    const handleResize = () => {
+      if (chartContainerRef.current && chartRef.current) {
+        chartRef.current.applyOptions({
+          width: chartContainerRef.current.clientWidth,
+        });
+      }
+    };
+
+    window.addEventListener('resize', handleResize);
+
+    return () => {
+      window.removeEventListener('resize', handleResize);
+      chart.remove();
+    };
+  }, []);
+
+  // Update chart data when priceHistory changes
+  useEffect(() => {
+    if (!priceHistory || !binanceSeriesRef.current || !okxSeriesRef.current) return;
+
+    const now = Date.now();
+    let cutoff = 0;
+    switch (timeRange) {
+      case '1m': cutoff = now - 60 * 1000; break;
+      case '5m': cutoff = now - 5 * 60 * 1000; break;
+      case '15m': cutoff = now - 15 * 60 * 1000; break;
+      case '1h': cutoff = now - 60 * 60 * 1000; break;
+    }
+
+    const filtered = priceHistory.filter(p => p.time >= cutoff);
+
+    const binanceData = filtered
+      .filter(p => p.binance !== null)
+      .map(p => ({
+        time: (p.time / 1000) as any,
+        value: p.binance!,
+      }));
+
+    const okxData = filtered
+      .filter(p => p.okx !== null)
+      .map(p => ({
+        time: (p.time / 1000) as any,
+        value: p.okx!,
+      }));
+
+    binanceSeriesRef.current.setData(binanceData);
+    okxSeriesRef.current.setData(okxData);
+  }, [priceHistory, timeRange]);
+
+  return (
+    <div className={styles.container}>
+      <div className={styles.header}>
+        <h3 className={styles.title}>{symbol.replace('USDT', '')}/USDT 价格走势</h3>
+        <div className={styles.timeRange}>
+          {(['1m', '5m', '15m', '1h'] as TimeRange[]).map(range => (
+            <button
+              key={range}
+              className={`${styles.rangeBtn} ${timeRange === range ? styles.active : ''}`}
+              onClick={() => setTimeRange(range)}
+            >
+              {range}
+            </button>
+          ))}
+        </div>
+      </div>
+      <div className={styles.legend}>
+        <span className={styles.legendItem}>
+          <span className={`${styles.dot} ${styles.binanceDot}`}></span>
+          Binance
+        </span>
+        <span className={styles.legendItem}>
+          <span className={`${styles.dot} ${styles.okxDot}`}></span>
+          OKX
+        </span>
+      </div>
+      <div ref={chartContainerRef} className={styles.chart} />
+    </div>
+  );
+}
