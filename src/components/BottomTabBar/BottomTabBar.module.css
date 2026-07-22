@@ -3,13 +3,15 @@
   bottom: 0;
   left: 0;
   right: 0;
-  background: var(--panel-bg);
-  border-top: 1px solid var(--border-color);
+  background: var(--glass-bg);
+  backdrop-filter: blur(20px) saturate(180%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  border-top: 1px solid var(--glass-border);
   display: flex;
   justify-content: space-around;
   align-items: center;
-  padding: 8px 0;
-  padding-bottom: max(8px, env(safe-area-inset-bottom));
+  padding: 6px 0;
+  padding-bottom: max(6px, env(safe-area-inset-bottom));
   z-index: 50;
 }
 
@@ -18,24 +20,57 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 2px;
+  gap: 3px;
   background: none;
   border: none;
   color: var(--text-muted);
   cursor: pointer;
-  padding: 4px;
-  transition: color 0.15s;
+  padding: 4px 0;
+  transition: color 0.2s, transform 0.15s;
+  position: relative;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.tab:active {
+  transform: scale(0.92);
 }
 
 .active {
-  color: #f0b90b;
+  color: var(--accent);
+}
+
+.active::before {
+  content: '';
+  position: absolute;
+  top: -6px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 20px;
+  height: 3px;
+  background: var(--accent);
+  border-radius: 0 0 3px 3px;
 }
 
 .icon {
   font-size: 20px;
+  line-height: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.icon svg {
+  width: 22px;
+  height: 22px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.8;
+  stroke-linecap: round;
+  stroke-linejoin: round;
 }
 
 .label {
   font-size: 10px;
   font-weight: 500;
+  letter-spacing: 0.02em;
 }

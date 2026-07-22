@@ -3,10 +3,15 @@
   flex-direction: column;
   height: 100vh;
   background: var(--bg-primary);
+  color: var(--text-primary);
 }
 
 .content {
   flex: 1;
   overflow: hidden;
-  padding-bottom: 60px; /* Space for bottom tab bar */
+  padding-bottom: 60px;
+}
+
+.content > * {
+  animation: fadeIn 0.2s ease-out;
 }

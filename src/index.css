@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&display=swap');
+
 * {
   margin: 0;
   padding: 0;
@@ -7,29 +9,70 @@
 /* Dark theme (default) */
 :root {
   --bg-primary: #0b0e11;
+  --bg-secondary: #12161c;
   --panel-bg: #1e2329;
+  --panel-bg-hover: #252a32;
   --header-bg: #161b26;
   --border-color: #2b3139;
   --row-border: #1a1e24;
   --row-hover: #252a32;
   --row-selected: #1a2332;
-  --text-primary: #e1e4e8;
-  --text-secondary: #8b949e;
-  --text-muted: #6e7681;
+  --text-primary: #eaecef;
+  --text-secondary: #848e9c;
+  --text-muted: #5e6673;
   --input-bg: #0b0e11;
   --input-border: #2b3139;
   --btn-bg: #2b3139;
   --btn-hover: #3b424d;
   --scrollbar-track: #0b0e11;
   --scrollbar-thumb: #2b3139;
+
+  /* Brand */
+  --accent: #f0b90b;
+  --accent-hover: #f5d060;
+  --accent-gradient: linear-gradient(135deg, #f0b90b, #f5d060);
+  --accent-glow: 0 0 12px rgba(240, 185, 11, 0.3);
+
+  /* Semantic */
+  --green: #0ecb81;
+  --green-bg: rgba(14, 203, 129, 0.12);
+  --red: #f6465d;
+  --red-bg: rgba(246, 70, 93, 0.12);
+  --blue: #3b82f6;
+  --blue-bg: rgba(59, 130, 246, 0.12);
+
+  /* Shadows */
+  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.24);
+  --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.32);
+  --shadow-lg: 0 8px 24px rgba(0, 0, 0, 0.4);
+
+  /* Glass */
+  --glass-bg: rgba(30, 35, 41, 0.85);
+  --glass-border: rgba(255, 255, 255, 0.06);
+
+  /* Radius */
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 16px;
+  --radius-xl: 20px;
+  --radius-pill: 100px;
+
+  /* Spacing */
+  --space-xs: 4px;
+  --space-sm: 8px;
+  --space-md: 12px;
+  --space-lg: 16px;
+  --space-xl: 20px;
 }
 
 /* Light theme */
 [data-theme="light"] {
   --bg-primary: #ffffff;
-  --panel-bg: #f5f5f5;
+  --bg-secondary: #f5f5f5;
+  --panel-bg: #ffffff;
+  --panel-bg-hover: #f9f9f9;
   --header-bg: #fafafa;
-  --border-color: #e5e7eb;
+  --border-color: #e8e8e8;
   --row-border: #f0f0f0;
   --row-hover: #f9f9f9;
   --row-selected: #eff6ff;
@@ -38,10 +81,21 @@
   --text-muted: #9ca3af;
   --input-bg: #ffffff;
   --input-border: #d1d5db;
-  --btn-bg: #e5e7eb;
-  --btn-hover: #d1d5db;
+  --btn-bg: #f0f0f0;
+  --btn-hover: #e5e5e5;
   --scrollbar-track: #f5f5f5;
   --scrollbar-thumb: #d1d5db;
+
+  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.08);
+  --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.1);
+  --shadow-lg: 0 8px 24px rgba(0, 0, 0, 0.12);
+
+  --glass-bg: rgba(255, 255, 255, 0.85);
+  --glass-border: rgba(0, 0, 0, 0.06);
+
+  --green-bg: rgba(14, 203, 129, 0.08);
+  --red-bg: rgba(246, 70, 93, 0.08);
+  --blue-bg: rgba(59, 130, 246, 0.08);
 }
 
 html, body {
@@ -50,6 +104,9 @@ html, body {
   color: var(--text-primary);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
+  overscroll-behavior: none;
 }
 
 #root {
@@ -59,21 +116,21 @@ html, body {
 }
 
 ::-webkit-scrollbar {
-  width: 5px;
-  height: 5px;
+  width: 4px;
+  height: 4px;
 }
 
 ::-webkit-scrollbar-track {
-  background: var(--scrollbar-track);
+  background: transparent;
 }
 
 ::-webkit-scrollbar-thumb {
   background: var(--scrollbar-thumb);
-  border-radius: 3px;
+  border-radius: 2px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #f0b90b;
+  background: var(--accent);
 }
 
 input[type="number"]::-webkit-inner-spin-button,
@@ -86,14 +143,19 @@ input[type="number"] {
   -moz-appearance: textfield;
 }
 
+/* Tabular numbers for prices */
+.tabular-nums {
+  font-variant-numeric: tabular-nums;
+}
+
 /* Price flash animation */
 @keyframes flashGreen {
-  0% { background-color: rgba(14, 203, 129, 0.2); }
+  0% { background-color: var(--green-bg); }
   100% { background-color: transparent; }
 }
 
 @keyframes flashRed {
-  0% { background-color: rgba(246, 70, 93, 0.2); }
+  0% { background-color: var(--red-bg); }
   100% { background-color: transparent; }
 }
 
@@ -103,4 +165,33 @@ input[type="number"] {
 
 .flash-red {
   animation: flashRed 0.5s ease-out;
+}
+
+/* Page fade-in */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(6px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.page-enter {
+  animation: fadeIn 0.25s ease-out;
+}
+
+/* Button press feedback */
+@keyframes pressScale {
+  0% { transform: scale(1); }
+  50% { transform: scale(0.96); }
+  100% { transform: scale(1); }
+}
+
+/* Pulse animation for countdown */
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.6; }
+}
+
+/* Shimmer for loading */
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
 }

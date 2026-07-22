@@ -1,33 +1,40 @@
 .list {
   display: flex;
   flex-direction: column;
+  padding: var(--space-sm);
+  gap: var(--space-xs);
 }
 
 .card {
   position: relative;
   overflow: hidden;
-  border-bottom: 1px solid var(--row-border);
+  border-radius: var(--radius-md);
   cursor: pointer;
-  transition: background 0.1s;
+  transition: transform 0.12s ease, box-shadow 0.12s ease;
+  box-shadow: var(--shadow-sm);
 }
 
 .card:active {
-  background: var(--row-hover);
+  transform: scale(0.98);
+  box-shadow: none;
 }
 
 .selected {
-  background: var(--row-selected);
-  border-left: 3px solid #3b82f6;
+  box-shadow: 0 0 0 1.5px var(--accent), var(--shadow-sm);
 }
 
 .cardContent {
   display: flex;
   align-items: center;
-  padding: 10px 12px;
+  padding: var(--space-md) var(--space-md);
   background: var(--panel-bg);
   position: relative;
   z-index: 1;
-  transition: transform 0.2s;
+  transition: background 0.15s;
+}
+
+.card:active .cardContent {
+  background: var(--panel-bg-hover);
 }
 
 .left {
@@ -36,59 +43,70 @@
 }
 
 .right {
-  width: 70px;
+  width: 64px;
   flex-shrink: 0;
-  margin-left: 8px;
+  margin-left: var(--space-sm);
+  opacity: 0.7;
 }
 
 .symbolRow {
   display: flex;
   align-items: baseline;
-  margin-bottom: 2px;
+  margin-bottom: 3px;
 }
 
 .symbolName {
-  font-size: 14px;
+  font-size: 15px;
   font-weight: 700;
   color: var(--text-primary);
+  letter-spacing: 0.02em;
 }
 
 .symbolPair {
   font-size: 10px;
   color: var(--text-muted);
-  margin-left: 2px;
+  margin-left: 3px;
+  font-weight: 500;
 }
 
 .priceRow {
   display: flex;
   align-items: center;
-  gap: 8px;
-  margin-bottom: 4px;
+  gap: var(--space-sm);
+  margin-bottom: 5px;
 }
 
 .mainPrice {
-  font-size: 16px;
+  font-size: 17px;
   font-weight: 700;
   color: var(--text-primary);
+  font-family: 'JetBrains Mono', monospace;
+  letter-spacing: -0.02em;
+}
+
+.up,
+.down {
+  font-size: 11px;
+  font-weight: 600;
+  padding: 2px 6px;
+  border-radius: var(--radius-pill);
   font-family: 'JetBrains Mono', monospace;
 }
 
 .up {
-  color: #0ecb81;
-  font-size: 12px;
-  font-weight: 600;
+  color: var(--green);
+  background: var(--green-bg);
 }
 
 .down {
-  color: #f6465d;
-  font-size: 12px;
-  font-weight: 600;
+  color: var(--red);
+  background: var(--red-bg);
 }
 
 .subRow {
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: var(--space-sm);
   flex-wrap: wrap;
 }
 
@@ -98,7 +116,7 @@
   font-family: 'JetBrains Mono', monospace;
   display: flex;
   align-items: center;
-  gap: 3px;
+  gap: 4px;
 }
 
 .exchangeLabel {
@@ -106,27 +124,31 @@
   font-weight: 700;
   color: #f0b90b;
   background: rgba(240, 185, 11, 0.15);
-  padding: 1px 3px;
-  border-radius: 2px;
+  padding: 1px 5px;
+  border-radius: var(--radius-pill);
+  letter-spacing: 0.05em;
 }
 
 .exchangeLabelOkx {
   font-size: 9px;
   font-weight: 700;
-  color: #3b82f6;
-  background: rgba(59, 130, 246, 0.15);
-  padding: 1px 3px;
-  border-radius: 2px;
+  color: var(--blue);
+  background: var(--blue-bg);
+  padding: 1px 5px;
+  border-radius: var(--radius-pill);
+  letter-spacing: 0.05em;
 }
 
 .spread {
   font-size: 11px;
   color: var(--text-muted);
+  font-family: 'JetBrains Mono', monospace;
 }
 
 .volume {
   font-size: 11px;
   color: var(--text-muted);
+  font-family: 'JetBrains Mono', monospace;
 }
 
 /* Delete button (revealed on swipe) */
@@ -136,13 +158,14 @@
   top: 0;
   bottom: 0;
   width: 70px;
-  background: #f6465d;
+  background: var(--red);
   color: white;
   border: none;
   font-size: 13px;
   font-weight: 600;
   cursor: pointer;
   z-index: 0;
+  border-radius: 0 var(--radius-md) var(--radius-md) 0;
 }
 
 /* Flash animations */
@@ -155,11 +178,11 @@
 }
 
 @keyframes flashGreen {
-  0% { background-color: rgba(14, 203, 129, 0.2); }
+  0% { background-color: var(--green-bg); }
   100% { background-color: transparent; }
 }
 
 @keyframes flashRed {
-  0% { background-color: rgba(246, 70, 93, 0.2); }
+  0% { background-color: var(--red-bg); }
   100% { background-color: transparent; }
 }

@@ -1,5 +1,5 @@
 .container {
-  padding: 8px 12px;
+  padding: var(--space-sm) var(--space-md);
   background: var(--bg-primary);
   border-bottom: 1px solid var(--border-color);
 }
@@ -7,21 +7,23 @@
 .searchRow {
   display: flex;
   align-items: center;
-  background: var(--input-bg);
-  border: 1px solid var(--input-border);
-  border-radius: 8px;
-  padding: 0 12px;
-  transition: border-color 0.15s;
+  background: var(--panel-bg);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  padding: 0 var(--space-md);
+  transition: border-color 0.2s, box-shadow 0.2s;
+  box-shadow: var(--shadow-sm);
 }
 
 .searchRow:focus-within {
-  border-color: #f0b90b;
+  border-color: var(--accent);
+  box-shadow: 0 0 0 2px rgba(240, 185, 11, 0.15);
 }
 
 .icon {
   color: var(--text-muted);
   font-size: 16px;
-  margin-right: 8px;
+  margin-right: var(--space-sm);
 }
 
 .input {
@@ -30,7 +32,7 @@
   border: none;
   color: var(--text-primary);
   font-size: 14px;
-  padding: 10px 0;
+  padding: 11px 0;
   outline: none;
 }
 
@@ -42,7 +44,7 @@
   display: flex;
   flex-wrap: wrap;
   gap: 6px;
-  margin-top: 8px;
+  margin-top: var(--space-sm);
   align-items: center;
 }
 
@@ -55,25 +57,28 @@
 .tag {
   background: var(--panel-bg);
   border: 1px solid var(--border-color);
-  border-radius: 4px;
-  padding: 4px 8px;
+  border-radius: var(--radius-pill);
+  padding: 4px 10px;
   font-size: 11px;
   color: var(--text-secondary);
   cursor: pointer;
   transition: all 0.15s;
+  font-weight: 500;
 }
 
 .tag:active {
-  background: #f0b90b;
+  background: var(--accent);
   color: #0b0e11;
-  border-color: #f0b90b;
+  border-color: var(--accent);
+  transform: scale(0.95);
 }
 
 .tagMore {
   background: none;
   border: none;
-  color: #f0b90b;
+  color: var(--accent);
   font-size: 11px;
   cursor: pointer;
   padding: 4px 8px;
+  font-weight: 600;
 }
