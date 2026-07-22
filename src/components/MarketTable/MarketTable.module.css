@@ -1,0 +1,216 @@
+.tableWrapper {
+  overflow-x: auto;
+  border: 1px solid #2b3139;
+  border-radius: 8px;
+  background: #1e2329;
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+}
+
+.table thead {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+.table th {
+  background: #161b26;
+  color: #8b949e;
+  font-weight: 600;
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.3px;
+  padding: 10px 8px;
+  text-align: right;
+  border-bottom: 1px solid #2b3139;
+  cursor: pointer;
+  user-select: none;
+  white-space: nowrap;
+}
+
+.table th:hover {
+  color: #e1e4e8;
+}
+
+.table td {
+  padding: 8px 8px;
+  text-align: right;
+  border-bottom: 1px solid #1a1e24;
+  white-space: nowrap;
+}
+
+.dragCol {
+  width: 24px;
+  text-align: center !important;
+  cursor: grab;
+}
+
+.dragHandle {
+  color: #3b3f47;
+  font-size: 14px;
+  line-height: 1;
+}
+
+.dragHandle:hover {
+  color: #8b949e;
+}
+
+.symbolCol {
+  text-align: left !important;
+}
+
+.symbolName {
+  font-weight: 700;
+  color: #e1e4e8;
+  font-size: 13px;
+}
+
+.symbolPair {
+  font-size: 10px;
+  color: #6e7681;
+  margin-left: 1px;
+}
+
+.priceCol {
+  font-family: 'JetBrains Mono', 'Fira Code', monospace;
+}
+
+.priceValue {
+  color: #e1e4e8;
+  font-weight: 500;
+}
+
+.spreadCol {}
+
+.spreadValue {
+  color: #8b949e;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 12px;
+}
+
+.spreadHighlight {
+  color: #f0b90b !important;
+  font-weight: 600;
+}
+
+.changeCol {
+  font-family: 'JetBrains Mono', monospace;
+}
+
+.up {
+  color: #0ecb81;
+  font-weight: 600;
+}
+
+.down {
+  color: #f6465d;
+  font-weight: 600;
+}
+
+.volumeCol {
+  font-family: 'JetBrains Mono', monospace;
+}
+
+.volumeValue {
+  color: #8b949e;
+}
+
+.frCol {
+  font-family: 'JetBrains Mono', monospace;
+}
+
+.frPair {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  font-size: 11px;
+}
+
+.frBinance {
+  color: #f0b90b;
+}
+
+.frOkx {
+  color: #3b82f6;
+}
+
+.exchangeLabel {
+  font-size: 9px;
+  color: #4a5060;
+  font-weight: 400;
+}
+
+.oiCol {
+  font-family: 'JetBrains Mono', monospace;
+}
+
+.oiValue {
+  color: #8b949e;
+}
+
+.trendCol {
+  width: 90px;
+}
+
+.actionCol {
+  width: 30px;
+  text-align: center !important;
+}
+
+.removeBtn {
+  background: none;
+  border: none;
+  color: #3b3f47;
+  font-size: 16px;
+  cursor: pointer;
+  padding: 0 4px;
+  line-height: 1;
+  transition: color 0.15s;
+}
+
+.removeBtn:hover {
+  color: #f6465d;
+}
+
+.row {
+  cursor: pointer;
+  transition: background 0.1s;
+}
+
+.row:hover {
+  background: #252a32;
+}
+
+.selectedRow {
+  background: #1a2332 !important;
+  border-left: 2px solid #3b82f6;
+}
+
+.sortIcon {
+  margin-left: 4px;
+  font-size: 9px;
+  color: #4a5060;
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+  .trendCol {
+    display: none;
+  }
+  .oiCol {
+    display: none;
+  }
+}
+
+@media (max-width: 768px) {
+  .volumeCol {
+    display: none;
+  }
+  .frCol {
+    display: none;
+  }
+}

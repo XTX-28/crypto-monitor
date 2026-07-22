@@ -1,9 +1,11 @@
 import { useState } from 'react';
 import { usePriceStore } from '../../hooks/usePriceStore';
+import { useLocale } from '../../i18n/useLocale';
 import { formatPrice } from '../../utils/format';
 import styles from './AlertPanel.module.css';
 
 export function AlertPanel() {
+  const { t } = useLocale();
   const alerts = usePriceStore(s => s.alerts);
   const symbols = usePriceStore(s => s.symbols);
   const addAlert = usePriceStore(s => s.addAlert);
@@ -18,7 +20,6 @@ export function AlertPanel() {
     e.preventDefault();
     const priceNum = parseFloat(price);
     if (!symbol || isNaN(priceNum)) return;
-
     addAlert({ symbol, type, price: priceNum, enabled: true });
     setPrice('');
   };
@@ -27,65 +28,54 @@ export function AlertPanel() {
 
   return (
     <div className={styles.container}>
-      <h3 className={styles.title}>价格警报</h3>
+      <h3 className={styles.title}>{t('priceAlerts')}</h3>
 
       <form onSubmit={handleAdd} className={styles.form}>
-        <select
-          value={symbol}
-          onChange={e => setSymbol(e.target.value)}
-          className={styles.select}
-        >
+        <select value={symbol} onChange={e => setSymbol(e.target.value)} className={styles.select}>
           {symbols.map(s => (
             <option key={s} value={s}>{s.replace('USDT', '')}/USDT</option>
           ))}
         </select>
 
-        <select
-          value={type}
-          onChange={e => setType(e.target.value as 'upper' | 'lower')}
-          className={styles.select}
-        >
-          <option value="upper">突破上限</option>
-          <option value="lower">跌破下限</option>
+        <select value={type} onChange={e => setType(e.target.value as 'upper' | 'lower')} className={styles.select}>
+          <option value="upper">{t('upperLimit')}</option>
+          <option value="lower">{t('lowerLimit')}</option>
         </select>
 
         <input
           type="number"
           value={price}
           onChange={e => setPrice(e.target.value)}
-          placeholder="目标价格"
+          placeholder={t('targetPrice')}
           className={styles.input}
           step="any"
         />
 
-        <button type="submit" className={styles.addBtn}>添加</button>
+        <button type="submit" className={styles.addBtn}>{t('add')}</button>
       </form>
 
       <div className={styles.list}>
         {symbolAlerts.length === 0 ? (
-          <div className={styles.empty}>暂无警报</div>
+          <div className={styles.empty}>{t('noAlerts')}</div>
         ) : (
           symbolAlerts.map(alert => (
             <div key={alert.id} className={`${styles.alertItem} ${alert.triggered ? styles.triggered : ''}`}>
               <div className={styles.alertInfo}>
                 <span className={`${styles.badge} ${alert.type === 'upper' ? styles.upperBadge : styles.lowerBadge}`}>
-                  {alert.type === 'upper' ? '上限' : '下限'}
+                  {alert.type === 'upper' ? t('upperLimit') : t('lowerLimit')}
                 </span>
                 <span className={styles.alertPrice}>${formatPrice(alert.price)}</span>
-                {alert.triggered && <span className={styles.triggeredLabel}>已触发</span>}
+                {alert.triggered && <span className={styles.triggeredLabel}>{t('triggered')}</span>}
               </div>
               <div className={styles.alertActions}>
                 <button
                   className={`${styles.toggleBtn} ${alert.enabled ? styles.enabledBtn : ''}`}
                   onClick={() => toggleAlert(alert.id)}
                 >
-                  {alert.enabled ? '已启用' : '已禁用'}
+                  {alert.enabled ? t('enabled') : t('disabled')}
                 </button>
-                <button
-                  className={styles.deleteBtn}
-                  onClick={() => removeAlert(alert.id)}
-                >
-                  删除
+                <button className={styles.deleteBtn} onClick={() => removeAlert(alert.id)}>
+                  {t('delete')}
                 </button>
               </div>
             </div>

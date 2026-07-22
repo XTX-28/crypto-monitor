@@ -1,7 +1,7 @@
 .container {
-  background: #0d1117;
-  border: 1px solid #2a3244;
-  border-radius: 12px;
+  background: #1e2329;
+  border: 1px solid #2b3139;
+  border-radius: 8px;
   padding: 16px;
 }
 
@@ -20,64 +20,64 @@
 }
 
 .select {
-  background: #161b26;
-  border: 1px solid #2a3244;
-  border-radius: 6px;
-  padding: 8px 10px;
+  background: #0b0e11;
+  border: 1px solid #2b3139;
+  border-radius: 4px;
+  padding: 6px 10px;
   color: #e1e4e8;
-  font-size: 13px;
+  font-size: 12px;
   outline: none;
 }
 
 .select:focus {
-  border-color: #3b82f6;
+  border-color: #f0b90b;
 }
 
 .input {
   flex: 1;
   min-width: 100px;
-  background: #161b26;
-  border: 1px solid #2a3244;
-  border-radius: 6px;
-  padding: 8px 10px;
+  background: #0b0e11;
+  border: 1px solid #2b3139;
+  border-radius: 4px;
+  padding: 6px 10px;
   color: #e1e4e8;
-  font-size: 13px;
+  font-size: 12px;
   outline: none;
 }
 
 .input:focus {
-  border-color: #3b82f6;
+  border-color: #f0b90b;
 }
 
 .input::placeholder {
-  color: #6e7681;
+  color: #4a5060;
 }
 
 .addBtn {
-  background: #3b82f6;
-  color: #fff;
+  background: #f0b90b;
+  color: #0b0e11;
   border: none;
-  border-radius: 6px;
-  padding: 8px 16px;
-  font-size: 13px;
+  border-radius: 4px;
+  padding: 6px 16px;
+  font-size: 12px;
   font-weight: 600;
   cursor: pointer;
-  transition: background 0.2s;
+  transition: background 0.15s;
 }
 
 .addBtn:hover {
-  background: #2563eb;
+  background: #d4a50a;
 }
 
 .list {
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: 6px;
 }
 
 .empty {
-  color: #6e7681;
-  font-size: 13px;
+  color: #4a5060;
+  font-size: 12px;
   text-align: center;
   padding: 16px;
 }
@@ -86,15 +86,15 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 10px 12px;
-  background: #161b26;
-  border: 1px solid #2a3244;
-  border-radius: 8px;
+  padding: 8px 12px;
+  background: #0b0e11;
+  border: 1px solid #2b3139;
+  border-radius: 6px;
 }
 
 .triggered {
   border-color: #f0b90b;
-  background: #2a2318;
+  background: #2a2518;
 }
 
 .alertInfo {
@@ -104,9 +104,9 @@
 }
 
 .badge {
-  font-size: 11px;
+  font-size: 10px;
   padding: 2px 6px;
-  border-radius: 4px;
+  border-radius: 3px;
   font-weight: 600;
 }
 
@@ -116,8 +116,8 @@
 }
 
 .lowerBadge {
-  background: rgba(248, 81, 73, 0.15);
-  color: #f85149;
+  background: rgba(246, 70, 93, 0.15);
+  color: #f6465d;
 }
 
 .alertPrice {
@@ -128,7 +128,7 @@
 }
 
 .triggeredLabel {
-  font-size: 11px;
+  font-size: 10px;
   color: #f0b90b;
 }
 
@@ -138,10 +138,10 @@
 }
 
 .toggleBtn {
-  background: #21262d;
-  border: 1px solid #2a3244;
+  background: transparent;
+  border: 1px solid #2b3139;
   border-radius: 4px;
-  padding: 4px 8px;
+  padding: 3px 8px;
   color: #6e7681;
   font-size: 11px;
   cursor: pointer;
@@ -155,12 +155,12 @@
 .deleteBtn {
   background: none;
   border: none;
-  color: #6e7681;
+  color: #4a5060;
   font-size: 11px;
   cursor: pointer;
-  padding: 4px 8px;
+  padding: 3px 8px;
 }
 
 .deleteBtn:hover {
-  color: #f85149;
+  color: #f6465d;
 }

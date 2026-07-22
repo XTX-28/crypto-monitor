@@ -1,0 +1,44 @@
+.bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 6px 16px;
+  background: #161b26;
+  border-top: 1px solid #2b3139;
+  font-size: 12px;
+  min-height: 32px;
+}
+
+.left {
+  display: flex;
+  align-items: center;
+}
+
+.right {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.item {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.label {
+  color: #6e7681;
+}
+
+.value {
+  color: #8b949e;
+  font-family: 'JetBrains Mono', monospace;
+}
+
+.goodLatency {
+  color: #0ecb81;
+}
+
+.badLatency {
+  color: #f6465d;
+}

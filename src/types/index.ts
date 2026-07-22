@@ -1,20 +1,29 @@
 export type Exchange = 'binance' | 'okx';
 
-export interface PriceData {
-  symbol: string;
-  exchange: Exchange;
-  price: number;
-  timestamp: number;
+export interface ExchangeMarketData {
+  price: number | null;
+  fundingRate: number | null;
+  nextFundingTime: number | null;
+  volume24h: number | null;
+  priceChange24h: number | null;
+  openInterest: number | null;
+  high24h: number | null;
+  low24h: number | null;
+  timestamp: number | null;
 }
 
 export interface PairPriceState {
-  binance: number | null;
-  okx: number | null;
-  binanceTimestamp: number | null;
-  okxTimestamp: number | null;
+  binance: ExchangeMarketData;
+  okx: ExchangeMarketData;
 }
 
 export interface PriceHistoryPoint {
+  time: number;
+  binance: number | null;
+  okx: number | null;
+}
+
+export interface FundingRateHistoryPoint {
   time: number;
   binance: number | null;
   okx: number | null;
@@ -38,7 +47,20 @@ export interface ToastMessage {
 }
 
 export interface AppSettings {
-  volatilityThreshold: number; // 波动提醒百分比阈值
+  volatilityThreshold: number;
   soundEnabled: boolean;
   notificationsEnabled: boolean;
+  language: 'zh' | 'en';
+  viewMode: 'table' | 'card';
+  fullscreen: boolean;
 }
+
+export type WsConnectionStatus = 'connecting' | 'connected' | 'disconnected';
+
+export interface ConnectionState {
+  binance: WsConnectionStatus;
+  okx: WsConnectionStatus;
+}
+
+export type SortField = 'symbol' | 'price' | 'spread' | 'change24h' | 'volume24h' | 'fundingRate' | 'openInterest';
+export type SortDirection = 'asc' | 'desc';

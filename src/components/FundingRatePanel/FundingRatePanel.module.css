@@ -1,0 +1,108 @@
+.container {
+  background: #1e2329;
+  border: 1px solid #2b3139;
+  border-radius: 8px;
+  padding: 16px;
+}
+
+.title {
+  font-size: 14px;
+  font-weight: 600;
+  color: #e1e4e8;
+  margin: 0 0 12px 0;
+}
+
+.tableWrapper {
+  overflow-x: auto;
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 12px;
+}
+
+.table th {
+  background: #161b26;
+  color: #8b949e;
+  font-weight: 600;
+  font-size: 11px;
+  text-transform: uppercase;
+  padding: 8px 10px;
+  text-align: right;
+  border-bottom: 1px solid #2b3139;
+  white-space: nowrap;
+}
+
+.symbolTh {
+  text-align: left !important;
+}
+
+.table td {
+  padding: 8px 10px;
+  text-align: right;
+  border-bottom: 1px solid #1a1e24;
+}
+
+.symbolTd {
+  text-align: left !important;
+}
+
+.symbolName {
+  font-weight: 700;
+  color: #e1e4e8;
+  font-size: 13px;
+}
+
+.symbolPair {
+  font-size: 10px;
+  color: #6e7681;
+  margin-left: 1px;
+}
+
+.rateCell {
+  font-family: 'JetBrains Mono', monospace;
+}
+
+.binanceRate {
+  color: #f0b90b;
+}
+
+.okxRate {
+  color: #3b82f6;
+}
+
+.diffValue {
+  color: #e1e4e8;
+  font-weight: 500;
+}
+
+.annualizedValue {
+  color: #0ecb81;
+  font-weight: 600;
+}
+
+.directionCell {
+  font-weight: 600;
+}
+
+.arbitrageDir {
+  color: #f0b90b;
+  padding: 2px 6px;
+  background: rgba(240, 185, 11, 0.1);
+  border-radius: 4px;
+  font-size: 11px;
+}
+
+.countdownCell {
+  font-family: 'JetBrains Mono', monospace;
+  color: #8b949e;
+}
+
+.highlightRow {
+  background: rgba(240, 185, 11, 0.05);
+}
+
+.highlightRow:hover {
+  background: rgba(240, 185, 11, 0.1);
+}

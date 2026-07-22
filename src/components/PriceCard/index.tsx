@@ -1,5 +1,5 @@
 import { usePriceStore } from '../../hooks/usePriceStore';
-import { formatPrice, formatSpread } from '../../utils/format';
+import { formatPrice, formatPercent, formatFundingRate, formatSpread } from '../../utils/format';
 import styles from './PriceCard.module.css';
 
 interface PriceCardProps {
@@ -14,8 +14,8 @@ export function PriceCard({ symbol, isSelected, onSelect, onRemove }: PriceCardP
 
   if (!prices) return null;
 
-  const spread = formatSpread(prices.binance, prices.okx);
-  const spreadAbs = Math.abs(spread.percentValue);
+  const spread = formatSpread(prices.binance.price, prices.okx.price);
+  const change = prices.binance.priceChange24h ?? prices.okx.priceChange24h;
 
   return (
     <div
@@ -27,32 +27,43 @@ export function PriceCard({ symbol, isSelected, onSelect, onRemove }: PriceCardP
         <span className={styles.pair}>/USDT</span>
         <button
           className={styles.removeBtn}
-          onClick={(e) => {
-            e.stopPropagation();
-            onRemove(symbol);
-          }}
-          title="移除"
+          onClick={(e) => { e.stopPropagation(); onRemove(symbol); }}
+          title="Remove"
         >
-          &times;
+          ×
         </button>
       </div>
 
       <div className={styles.prices}>
         <div className={styles.exchangeRow}>
-          <span className={styles.exchangeLabel}>Binance</span>
-          <span className={styles.price}>{formatPrice(prices.binance)}</span>
+          <span className={`${styles.exchangeLabel} ${styles.binanceLabel}`}>Binance</span>
+          <span className={styles.price}>{formatPrice(prices.binance.price)}</span>
         </div>
         <div className={styles.exchangeRow}>
-          <span className={styles.exchangeLabel}>OKX</span>
-          <span className={styles.price}>{formatPrice(prices.okx)}</span>
+          <span className={`${styles.exchangeLabel} ${styles.okxLabel}`}>OKX</span>
+          <span className={styles.price}>{formatPrice(prices.okx.price)}</span>
         </div>
       </div>
 
-      <div className={`${styles.spread} ${spreadAbs > 0.1 ? styles.spreadHighlight : ''}`}>
-        <span className={styles.spreadLabel}>价差</span>
-        <span className={`${styles.spreadValue} ${spread.percentValue >= 0 ? styles.positive : styles.negative}`}>
-          {spread.percent}
-        </span>
+      <div className={styles.dataRow}>
+        <div className={styles.dataItem}>
+          <span className={styles.dataLabel}>Spread</span>
+          <span className={`${styles.dataValue} ${Math.abs(spread.percentValue) > 0.1 ? styles.spreadHighlight : ''}`}>
+            {spread.percent}
+          </span>
+        </div>
+        {change !== null && change !== undefined && (
+          <div className={styles.dataItem}>
+            <span className={styles.dataLabel}>24h</span>
+            <span className={change >= 0 ? styles.up : styles.down}>
+              {formatPercent(change)}
+            </span>
+          </div>
+        )}
+        <div className={styles.dataItem}>
+          <span className={styles.dataLabel}>FR</span>
+          <span className={styles.frValue}>{formatFundingRate(prices.binance.fundingRate)}</span>
+        </div>
       </div>
     </div>
   );

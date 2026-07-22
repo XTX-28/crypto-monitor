@@ -1,0 +1,48 @@
+.container {
+  display: flex;
+  gap: 16px;
+  align-items: center;
+}
+
+.item {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 12px;
+}
+
+.dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.connected {
+  background: #0ecb81;
+  box-shadow: 0 0 6px rgba(14, 203, 129, 0.5);
+}
+
+.connecting {
+  background: #f0b90b;
+  animation: blink 1s infinite;
+}
+
+.disconnected {
+  background: #f6465d;
+  box-shadow: 0 0 6px rgba(246, 70, 93, 0.5);
+}
+
+.exchange {
+  color: #8b949e;
+  font-weight: 500;
+}
+
+.status {
+  color: #6e7681;
+}
+
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.4; }
+}

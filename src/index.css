@@ -6,28 +6,34 @@
 
 html, body {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', sans-serif;
-  background: #0d1117;
+  background: #0b0e11;
   color: #e1e4e8;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
+#root {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
 ::-webkit-scrollbar {
-  width: 6px;
-  height: 6px;
+  width: 5px;
+  height: 5px;
 }
 
 ::-webkit-scrollbar-track {
-  background: #0d1117;
+  background: #0b0e11;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #2a3244;
+  background: #2b3139;
   border-radius: 3px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #3b82f6;
+  background: #f0b90b;
 }
 
 input[type="number"]::-webkit-inner-spin-button,
@@ -38,4 +44,23 @@ input[type="number"]::-webkit-outer-spin-button {
 
 input[type="number"] {
   -moz-appearance: textfield;
+}
+
+/* Price flash animation */
+@keyframes flashGreen {
+  0% { background-color: rgba(14, 203, 129, 0.2); }
+  100% { background-color: transparent; }
+}
+
+@keyframes flashRed {
+  0% { background-color: rgba(246, 70, 93, 0.2); }
+  100% { background-color: transparent; }
+}
+
+.flash-green {
+  animation: flashGreen 0.5s ease-out;
+}
+
+.flash-red {
+  animation: flashRed 0.5s ease-out;
 }

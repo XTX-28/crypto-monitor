@@ -1,38 +1,36 @@
 .card {
-  background: #161b26;
-  border: 1px solid #2a3244;
-  border-radius: 12px;
-  padding: 16px;
+  background: #1e2329;
+  border: 1px solid #2b3139;
+  border-radius: 8px;
+  padding: 14px;
   cursor: pointer;
-  transition: all 0.2s ease;
-  min-width: 200px;
+  transition: all 0.15s ease;
 }
 
 .card:hover {
-  border-color: #3b82f6;
-  transform: translateY(-2px);
-  box-shadow: 0 4px 16px rgba(59, 130, 246, 0.15);
+  border-color: #f0b90b;
+  background: #252a32;
 }
 
 .selected {
-  border-color: #3b82f6;
-  background: #1a2033;
+  border-color: #f0b90b;
+  background: #2a2518;
 }
 
 .header {
   display: flex;
   align-items: center;
-  margin-bottom: 12px;
+  margin-bottom: 10px;
 }
 
 .symbol {
-  font-size: 18px;
+  font-size: 16px;
   font-weight: 700;
   color: #e1e4e8;
 }
 
 .pair {
-  font-size: 12px;
+  font-size: 11px;
   color: #6e7681;
   margin-left: 2px;
 }
@@ -41,13 +39,13 @@
   margin-left: auto;
   background: none;
   border: none;
-  color: #6e7681;
-  font-size: 18px;
+  color: #3b3f47;
+  font-size: 16px;
   cursor: pointer;
   padding: 0 4px;
   line-height: 1;
   opacity: 0;
-  transition: opacity 0.2s;
+  transition: all 0.15s;
 }
 
 .card:hover .removeBtn {
@@ -55,14 +53,14 @@
 }
 
 .removeBtn:hover {
-  color: #f85149;
+  color: #f6465d;
 }
 
 .prices {
   display: flex;
   flex-direction: column;
-  gap: 6px;
-  margin-bottom: 12px;
+  gap: 4px;
+  margin-bottom: 10px;
 }
 
 .exchangeRow {
@@ -72,51 +70,74 @@
 }
 
 .exchangeLabel {
-  font-size: 11px;
-  color: #6e7681;
+  font-size: 10px;
   text-transform: uppercase;
   letter-spacing: 0.5px;
+  font-weight: 600;
+}
+
+.binanceLabel {
+  color: #f0b90b;
+}
+
+.okxLabel {
+  color: #3b82f6;
 }
 
 .price {
-  font-size: 14px;
+  font-size: 13px;
   font-weight: 600;
   color: #e1e4e8;
   font-family: 'JetBrains Mono', 'Fira Code', monospace;
 }
 
-.spread {
+.dataRow {
   display: flex;
   justify-content: space-between;
-  align-items: center;
   padding-top: 8px;
-  border-top: 1px solid #2a3244;
+  border-top: 1px solid #2b3139;
 }
 
-.spreadLabel {
+.dataItem {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+}
+
+.dataLabel {
+  font-size: 9px;
+  color: #4a5060;
+  text-transform: uppercase;
+}
+
+.dataValue {
   font-size: 11px;
-  color: #6e7681;
-}
-
-.spreadValue {
-  font-size: 13px;
   font-weight: 600;
-  font-family: 'JetBrains Mono', 'Fira Code', monospace;
+  font-family: 'JetBrains Mono', monospace;
+  color: #8b949e;
 }
 
-.spreadHighlight .spreadValue {
-  animation: pulse 1.5s infinite;
+.spreadHighlight {
+  color: #f0b90b !important;
 }
 
-.positive {
+.frValue {
+  font-size: 11px;
+  font-family: 'JetBrains Mono', monospace;
+  color: #f0b90b;
+}
+
+.up {
   color: #0ecb81;
+  font-size: 11px;
+  font-weight: 600;
+  font-family: 'JetBrains Mono', monospace;
 }
 
-.negative {
-  color: #f85149;
-}
-
-@keyframes pulse {
-  0%, 100% { opacity: 1; }
-  50% { opacity: 0.6; }
+.down {
+  color: #f6465d;
+  font-size: 11px;
+  font-weight: 600;
+  font-family: 'JetBrains Mono', monospace;
 }
